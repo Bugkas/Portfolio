@@ -71,6 +71,11 @@ section {
     margin-bottom: 3rem;
 }
 
+/* Apply to any section that has an ID attribute */
+section[id] {
+    scroll-margin-top: 6rem;
+}
+
 .hero {
     text-align: center;
     background: white;
