@@ -1,11 +1,11 @@
 /* GLOBAL STYLES */
 :root {
-    --primary-color: #1a2a3a;    /* Deep Logic Blue */
-    --secondary-color: #2c3e50;  /* Slate Grey */
-    --accent-color: #3498db;     /* Bright Tech Blue */
-    --text-color: #333;
-    --bg-light: #f9f9f9;
+    --primary-color: #003366;    /* Midnight Blue - Professional */
+    --secondary-color: #004080;  /* Deep Ocean Blue */
+    --text-color: #2c3e50;       /* Dark Navy Text */
+    --bg-light: #f4f7f9;         /* Very Light Blue-Grey Background */ 
 }
+
 
 * {
     margin: 0;
