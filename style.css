@@ -2,8 +2,9 @@
 :root {
     --primary-color: #003366;    /* Midnight Blue - Professional */
     --secondary-color: #004080;  /* Deep Ocean Blue */
+    --accent-color: #3399ff;     /* Sky Blue - For Links and Hovers */
     --text-color: #2c3e50;       /* Dark Navy Text */
-    --bg-light: #f4f7f9;         /* Very Light Blue-Grey Background */ 
+    --bg-light: #f4f7f9;         /* Very Light Blue-Grey Background */
 }
 
 
