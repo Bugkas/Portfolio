@@ -7,11 +7,24 @@
     --bg-light: #f4f7f9;         /* Very Light Blue-Grey Background */
 }
 
+/* Dark mode variable overrides: add the `dark` class to the documentElement to enable */
+.dark {
+    --primary-color: #0b1220;   /* Dark header */
+    --secondary-color: #3399ff;
+    --accent-color: #70b7ff;
+    --text-color: #e6eef8;      /* Light text on dark bg */
+    --bg-light: #071021;        /* Page background in dark mode */
+}
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+div h1 {
+    color: white;
 }
 
 body {
@@ -24,6 +37,13 @@ body {
 h1, h2, h3 {
     font-family: 'Consolas', monospace; /* Font 2 - Programmer feel */
     color: var(--primary-color);
+}
+
+/* Dark mode heading color override for visibility */
+.dark h1,
+.dark h2,
+.dark h3 {
+    color: var(--accent-color);
 }
 
 /* NAVIGATION & HEADER */
@@ -77,11 +97,41 @@ section[id] {
 }
 
 .hero {
-    text-align: center;
+    max-width: 1100px;
+    margin: 2rem auto;
+    text-align: left;
     background: white;
     padding: 3rem;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* CSS Effect: Box Shadow */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    color: var(--text-color);
+    transition: background 220ms ease, color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.hero h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Center images inside hero */
+.hero img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive adjustments for hero */
+@media (max-width: 768px) {
+    .hero {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+}
+
+/* Dark mode hero tweaks */
+.dark .hero {
+    background: rgba(255,255,255,0.03);
+    box-shadow: none;
 }
 
 .flex-container {
@@ -93,10 +143,18 @@ section[id] {
 
 .card {
     background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
+    padding: 2rem;
+    border-radius: 12px;
     flex: 1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
 }
 
 /* TABLE STYLING */
@@ -136,13 +194,15 @@ label {
     font-weight: bold;
 }
 
-input[type="text"], input[type="email"], input[type="date"], textarea {
+ textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], select {
+            width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;
+        }
 button {
     background: var(--accent-color);
     color: white;
@@ -170,4 +230,93 @@ footer {
     .flex-container {
         flex-direction: column;
     }
+}
+
+.name {
+    font-size: medium;
+
+}
+.error-msg 
+{ color: #ff4d4d; 
+    font-size: 0.85rem; 
+    display: block; 
+    margin-top: 5px;
+}
+.form-group { 
+    margin-bottom: 20px; 
+    text-align: left; 
+    max-width: 400px; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+/* Dark-mode UI adjustments and form contrast fixes */
+/* Ensure readable text colors and controls in both themes */
+.dark p,
+.dark label,
+.dark .card,
+.dark footer,
+.dark header,
+.dark .hero {
+    color: var(--text-color);
+}
+
+/* Card and form backgrounds */
+.card {
+    background: white;
+}
+.dark .card {
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.08);
+}
+
+form {
+    background: white;
+}
+.dark form {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Inputs / textarea / select contrast */
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], select, textarea {
+    background: white;
+    color: var(--text-color);
+}
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="date"],
+.dark select,
+.dark textarea {
+    background: rgba(0,0,0,0.35);
+    color: var(--text-color);
+    border-color: rgba(255,255,255,0.06);
+}
+
+/* Placeholder color for better contrast */
+::placeholder { color: rgba(0,0,0,0.45); }
+.dark ::placeholder { color: rgba(255,255,255,0.6); }
+
+/* Dark-mode toggle button styling */
+.dark-mode-toggle {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.12);
+    color: var(--primary-color);
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
+.dark .dark-mode-toggle {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+    color: var(--accent-color);
+}
+
+/* Force lightly-styled inline grey text to be readable in dark mode */
+.dark p[style], .dark span[style] {
+    color: var(--text-color) !important;
 }

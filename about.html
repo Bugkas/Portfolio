@@ -8,24 +8,27 @@
 </head>
 <body>
     <header>
-        <div class="logo"><h1>Jericho Boado</h1></div>
+        <div class="logo"><h1 class="name">Jericho Boado</h1></div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="register.html">Register</a></li>
             </ul>
         </nav>
+        <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
     </header>
 
     <main>
-        <section>
+        <section class="card">
             <h2>My Journey with Code</h2>
-            <p>I didn't start coding because of a class; I started because of curiosity. Before I ever sat in a Computer Science lecture, I wrote my first line of code in Python to see how software actually functions. Since then, I have expanded my horizons into Java, C, and Kotlin. Currently, I am mastering VB.NET and HTML to round out my full-stack capabilities.</p>
+            <p>I didn't start coding because of a class; I started because of curiosity. Before I ever sat in a Computer Science lecture, I wrote my first line of code in Python to see how software actually functions. Since then, I have expanded my horizons into Java, C, and Kotlin.</p>
             
-            <div class="flex-container" style="margin-top: 20px;">
-                <img src="asset/Boado, Jericho T_2x2.webp.jpg" alt="Jericho Boado Professional Photo" style="width:250px; border-radius:10px; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+            <div class="flex-container" style="margin-top: 20px; gap: 30px;">
+                <img src="assets/1x1.png" alt="Jericho Boado Professional Photo" 
+                     style="width: 220px; height: auto; border-radius: 10px; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.25), 0 20px 60px rgba(0,0,0,0.2);">
+                
                 <div style="flex: 2;">
                     <h3>The Passion for Systems</h3>
                     <p>I am particularly drawn to backend development and IoT. One of my proudest moments was building an attendance system application and successfully installing it on my own phone. Seeing a tool I created work in the palm of my hand solidified my desire to create profitable, real-world applications. I love the "Aha!" moment when a complex logic bug is finally solved through persistence.</p>
@@ -33,28 +36,58 @@
             </div>
         </section>
 
-        <section>
+        <section class="card">
+            <h3>Technical Expertise & Tools</h3>
+            <p>Developing robust systems requires a deep understanding of data flow and hardware integration. I focus on creating scalable architectures that can handle real-time data processing.</p>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                <img src="assets\Screenshot 2026-02-03 124734.png" 
+                     alt="Programmer working on complex logic" 
+                     style="width: 100%; max-width: 500px; height: auto; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.25), 0 10px 30px rgba(0,0,0,0.2), 0 20px 60px rgba(0,0,0,0.15);">
+                <p style="font-size: 0.85rem; color: var(--text-color); margin-top: 10px;"><em>JavaScript visualization</em></p>
+            </div>
+        </section>
+
+        <section class="card">
             <h3>My Learning Timeline</h3>
-            <ol style="margin-left: 20px;">
-                <li><strong>Self-Taught Beginnings:</strong> Exploring Python and basic logic structures out of pure interest.</li>
-                <li><strong>Academic Entry:</strong> Beginning formal Computer Science studies and mastering Python, Java and C fundamentals.</li>
-                <li><strong>Mobile Development:</strong> Architecting and deploying a functional attendance system app.</li>
-                <li><strong>Hardware Exploration:</strong> Diving into IoT projects to see how code influences the physical world.</li>
-                <li><strong>Web Integration:</strong> Learning HTML, CSS, and VB.NET to build comprehensive business solutions.</li>
+            <ol style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Self-Taught Beginnings:</strong> Exploring Python out of pure interest.</li>
+                <li><strong>Academic Entry:</strong> Mastering Python, Java and C fundamentals.</li>
+                <li><strong>Mobile Development:</strong> Architecting a functional attendance system app.</li>
+                <li><strong>Hardware Exploration:</strong> Diving into IoT and physical computing.</li>
+                <li><strong>Web Integration:</strong> Learning HTML, CSS, and VB.NET for business solutions.</li>
             </ol>
         </section>
 
-        <section>
-            <blockquote style="font-style: italic; border-left: 5px solid var(--accent-color); padding-left: 20px; font-size: 1.2rem; margin: 40px 0;">
+        <!-- Interactive Mini Game: Snake -->
+        <section id="mini-game" class="card">
+            <h3>Test Your Skills: Snake Game</h3>
+            <p>A classic game built with vanilla JavaScript and HTML5 Canvas. Use arrow keys or WASD to move. Eat the red food to grow and increase your score!</p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <canvas id="snakeCanvas" width="400" height="400" style="border: 2px solid var(--primary-color); background: rgba(0,0,0,0.1); border-radius: 8px; display: inline-block;"></canvas>
+            </div>
+
+            <div style="text-align: center; margin: 15px 0; font-weight: bold;">
+                <p>Score: <span id="snakeScore" style="color: var(--accent-color); font-size: 1.2rem;">0</span></p>
+                <button id="snakeStartBtn" style="padding: 8px 20px; margin: 5px; background: var(--accent-color); border: none; border-radius: 4px; color: white; cursor: pointer; font-size: 1rem;">Start Game</button>
+                <button id="snakePauseBtn" style="padding: 8px 20px; margin: 5px; background: var(--secondary-color); border: none; border-radius: 4px; color: white; cursor: pointer; font-size: 1rem;">Pause</button>
+            </div>
+            <p style="text-align: center; font-size: 0.9rem; color: var(--text-color);">Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to control the snake</p>
+        </section>
+
+        <section class="card">
+            <blockquote style="font-style: italic; border-left: 5px solid var(--accent-color); padding-left: 20px; font-size: 1.1rem; margin: 40px 0; color: #555;">
                 "Programming isn't just about what you know; it's about how you think. Logic is the foundation of everything."
-                <br>— Jericho Boado
+                <br><span style="color: var(--primary-color); font-weight: bold;">— Jericho Boado</span>
             </blockquote>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Jericho Boado | Student ID: [Placeholder] | Created for Portfolio Project</p>
+        <p>&copy; 2026 Jericho Boado | Created for Portfolio Project</p>
     </footer>
+    <script src="darkmode.js"></script>
+    <script src="snake.js"></script>
 </body>
-
 </html>

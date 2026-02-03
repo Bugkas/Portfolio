@@ -1,57 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jericho Boado | Logic & Backend</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #003366 0%, #0b1220 50%, #001a33 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle background pattern */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle, rgba(51, 153, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: movePattern 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes movePattern {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .loader-container {
+      text-align: center;
+      color: white;
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo {
+      margin-bottom: 40px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .logo img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid rgba(51, 153, 255, 0.4);
+      box-shadow: 0 0 40px rgba(51, 153, 255, 0.3), 0 20px 60px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .logo img:hover {
+      border-color: rgba(51, 153, 255, 0.8);
+      box-shadow: 0 0 60px rgba(51, 153, 255, 0.5), 0 20px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    h1 {
+      font-family: 'Consolas', monospace;
+      font-size: 48px;
+      margin-bottom: 10px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #3399ff, #70b7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 50px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Spinner Animation */
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 3px solid rgba(51, 153, 255, 0.2);
+      border-top: 3px solid rgba(51, 153, 255, 0.8);
+      border-right: 3px solid rgba(51, 153, 255, 0.5);
+      border-radius: 50%;
+      margin: 40px auto;
+      animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      font-size: 18px;
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    .dots {
+      display: inline-block;
+      width: 30px;
+      color: rgba(51, 153, 255, 0.8);
+    }
+
+    .progress-bar {
+      width: 200px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin: 30px auto;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3399ff, #70b7ff);
+      border-radius: 3px;
+      animation: progress 2.5s ease-in-out infinite;
+    }
+
+    @keyframes progress {
+      0% { width: 0%; }
+      50% { width: 100%; }
+      100% { width: 100%; }
+    }
+
+    /* Fade out animation */
+    .fade-out {
+      animation: fadeOut 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 36px; }
+      .tagline { font-size: 14px; }
+      .logo img { width: 140px; height: 140px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo"><h1>Jericho Boado</h1></div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="register.html">Register</a></li>
-            </ul>
-        </nav>
-    </header>
+  <div class="loader-container">
+    <div class="logo"><img src="assets/echo.png" alt="Jericho Boado"></div>
+    <h1>Jericho Boado</h1>
+    <p class="tagline">Backend Logic Specialist</p>
+    <div class="spinner"></div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="loading-text">
+      Loading<span class="dots" id="dots">...</span>
+    </div>
+  </div>
 
-    <main>
-        <section class="hero">
-            <h2>Building Robust Backend Logic</h2>
-            <p>Welcome to my portfolio. I am a Computer Science student who finds beauty in the structure of code and the logic of complex systems. While others focus on the visual exterior, I specialize in the "engine" that makes applications run smoothly and efficiently.</p>
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Clean code on a computer screen" style="width:100%; max-width:600px; margin-top:20px; border-radius:10px;">
-        </section>
+  <script>
+    // Animate dots
+    let dotCount = 0;
+    const dotsEl = document.getElementById('dots');
+    
+    const dotInterval = setInterval(() => {
+      dotCount = (dotCount + 1) % 4;
+      dotsEl.textContent = '.'.repeat(dotCount);
+    }, 500);
 
-        <section>
-            <h3>Core Development Principles</h3>
-            <ul style="margin-left: 20px; line-height: 2;">
-                <li><strong>Logic Over Aesthetics:</strong> Prioritizing functional, bug-free backend architecture.</li>
-                <li><strong>Manual Problem Solving:</strong> Tackling code challenges independently before utilizing AI tools.</li>
-                <li><strong>Readability:</strong> Strict adherence to clean indentation and meaningful comments.</li>
-                <li><strong>Future Scalability:</strong> Writing shorter, more efficient code for long-term project growth.</li>
-            </ul>
-        </section>
-
-        <section class="flex-container">
-            <div class="card">
-                <h3>The Journey</h3>
-                <p>From my first Python script to building mobile attendance systems and exploring IoT.</p>
-                <a href="about.html" style="color:var(--accent-color);">Discover My Story &rarr;</a>
-            </div>
-            <div class="card">
-                <h3>Resources</h3>
-                <p>Explore the IDEs and tools I use to maintain high-quality code and system logic.</p>
-                <a href="contact.html#dev-resources"  style="color:var(--accent-color);">View Dev Tools &rarr;</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Jericho Boado | Student ID: [Placeholder] | Created for Portfolio Project</p>
-    </footer>
+    // Load for 3 seconds then redirect
+    setTimeout(() => {
+      clearInterval(dotInterval);
+      document.querySelector('.loader-container').classList.add('fade-out');
+      
+      // Redirect after fade out
+      setTimeout(() => {
+        window.location.href = 'home.html';
+      }, 500);
+    }, 3000);
+  </script>
 </body>
 </html>

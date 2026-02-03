@@ -6,41 +6,77 @@
     <title>Contact & Resources</title>
     <link rel="stylesheet" href="style.css">
 </head>
+    <style>
+        /* Form styling */
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 <body>
     <header>
-        <div class="logo"><h1>Jericho Boado</h1></div>
+        <div class="logo"><h1 class="name">Jericho Boado</h1></div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
                 <li><a href="register.html">Register</a></li>
             </ul>
         </nav>
+        <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
     </header>
 
     <main>
-        <section>
+        <section class="card">
             <h2>Get in Touch</h2>
             <p>If you have a logic problem that needs solving or want to discuss IoT trends, feel free to reach out using the form below.</p>
-            <form action="#">
+            <form action="#" id="contactForm" onsubmit="return validateContactForm()">
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name">
+                    <span id="nameError" class="error-msg"></span>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="student@example.com" required>
+                    <input type="email" id="email" name="email" placeholder="student@example.com">
+                    <span id="emailError" class="error-msg"></span>
                 </div>
                 <div class="form-group">
                     <label for="message">Message:</label>
                     <textarea id="message" rows="5" placeholder="Let's talk logic..."></textarea>
+                    <span id="messageError" class="error-msg"></span>
                 </div>
-                <button type="submit">Send Message</button>
+                <div style="text-align: center;">
+                    <button type="submit">Send Message</button>
+                </div>
             </form>
         </section>
 
-        <section id="dev-resources">
+        <section id="dev-resources" class="card">
             <h3>Recommended Dev Resources</h3>
             <table>
                 <thead>
@@ -66,7 +102,9 @@
             </table>
         </section>
 
-        <section>
+        
+
+        <section class="card">
             <h3>Location</h3>
             <div style="width: 100%; height: 300px; background: #ddd; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
                 <p>[Map Placeholder: Tech Innovation Hub / University Campus]</p>
@@ -76,7 +114,146 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Jericho Boado | Student ID: [Placeholder] | Created for Portfolio Project</p>
+        <p>&copy; 2026 Jericho Boado | Created for Portfolio Project</p>
     </footer>
+
+    <script src="darkmode.js"></script>
+
+    
+
+    <script>
+        // ============================================
+        // FORM VALIDATION FUNCTIONS
+        // ============================================
+
+        /**
+         * Main contact form validation function
+         * Validates all form fields and displays error messages
+         * @returns {boolean} - True if all validations pass, false otherwise
+         */
+        function validateContactForm() {
+            // Retrieve form input values
+            const formInputs = getContactFormInputs();
+
+            // Retrieve error message elements
+            const errorElements = getContactErrorElements();
+
+            // Clear all previous error messages
+            clearContactErrors(errorElements);
+
+            // Validate all form fields
+            let isValid = true;
+            isValid = validateContactName(formInputs.name, errorElements.nameError) && isValid;
+            isValid = validateContactEmail(formInputs.email, errorElements.emailError) && isValid;
+            isValid = validateContactMessage(formInputs.message, errorElements.messageError) && isValid;
+
+            // Display success message if all validations pass
+            if (isValid) {
+                alert("Message sent successfully!");
+            }
+
+            return isValid;
+        }
+
+        /**
+         * Retrieves all contact form input values
+         * @returns {Object} - Object containing all form input values
+         */
+        function getContactFormInputs() {
+            return {
+                name: document.querySelector("#name").value,
+                email: document.querySelector("#email").value,
+                message: document.querySelector("#message").value
+            };
+        }
+
+        /**
+         * Retrieves all contact form error message elements
+         * @returns {Object} - Object containing all error message DOM elements
+         */
+        function getContactErrorElements() {
+            return {
+                nameError: document.querySelector("#nameError"),
+                emailError: document.querySelector("#emailError"),
+                messageError: document.querySelector("#messageError")
+            };
+        }
+
+        /**
+         * Clears all contact form error messages
+         * @param {Object} errorElements - Object containing all error message DOM elements
+         */
+        function clearContactErrors(errorElements) {
+            errorElements.nameError.textContent = "";
+            errorElements.emailError.textContent = "";
+            errorElements.messageError.textContent = "";
+        }
+
+        // ============================================
+        // INDIVIDUAL FIELD VALIDATION FUNCTIONS
+        // ============================================
+
+        /**
+         * Validates the contact form name field
+         * @param {string} name - The name value to validate
+         * @param {Element} errorElement - The error message element to display
+         * @returns {boolean} - True if valid, false otherwise
+         */
+        function validateContactName(name, errorElement) {
+            if (name.trim() === "") {
+                errorElement.textContent = "Name is required";
+                return false;
+            }
+            return true;
+        }
+
+        /**
+         * Validates the contact form email field
+         * @param {string} email - The email value to validate
+         * @param {Element} errorElement - The error message element to display
+         * @returns {boolean} - True if valid, false otherwise
+         */
+        function validateContactEmail(email, errorElement) {
+            if (email === "") {
+                errorElement.textContent = "Email is required";
+                return false;
+            } else if (!isValidEmail(email)) {
+                errorElement.textContent = "Invalid email format";
+                return false;
+            }
+            return true;
+        }
+
+        /**
+         * Validates the contact form message field
+         * @param {string} message - The message value to validate
+         * @param {Element} errorElement - The error message element to display
+         * @returns {boolean} - True if valid, false otherwise
+         */
+        function validateContactMessage(message, errorElement) {
+            if (message.trim() === "") {
+                errorElement.textContent = "Message is required";
+                return false;
+            } else if (message.trim().length < 10) {
+                errorElement.textContent = "Message must be at least 10 characters";
+                return false;
+            }
+            return true;
+        }
+
+        // ============================================
+        // UTILITY VALIDATION FUNCTIONS
+        // ============================================
+
+        /**
+         * Checks if an email address is in valid format
+         * @param {string} email - The email address to validate
+         * @returns {boolean} - True if valid email format, false otherwise
+         */
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
 </body>
 </html>
